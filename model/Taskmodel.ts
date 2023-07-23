@@ -10,6 +10,7 @@ interface iTaskData extends iTask,  mongoose.Document{}
 const DoneTask = new mongoose.Schema({
         priority:{
                 type:String,
+                unique: true,
         },
           task:{
           type:String,

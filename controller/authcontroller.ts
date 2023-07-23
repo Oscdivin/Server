@@ -13,7 +13,7 @@ export const readUser = async (
       message: "Get all Users",
       data: user,
     });
-  } catch (error) {
+  } catch (error:any) {
     return res.status(404).json({ message: error.message });
   }
 };
@@ -30,7 +30,7 @@ export const readOneUser = async (
       message: "Get One Users",
       data: user,
     });
-  } catch (error) {
+  } catch (error:any) {
     return res.status(404).json({ message: error.message });
   }
 };
@@ -52,7 +52,7 @@ export const updateOneUser = async (
       message: "Account Updated",
       data: user,
     });
-  } catch (error) {
+  } catch (error:any) {
     return res.status(404).json({ message: error.message });
   }
 };
@@ -65,11 +65,11 @@ export const deleteOneUser = async (
     const { id } = req.params;
     const user = await authModel.findByIdAndDelete(id);
 
-    return res.status(200).json({
+    return res.status(201).json({
       message: "Account Deleted",
       data: user,
     });
-  } catch (error) {
+  } catch (error:any) {
     return res.status(404).json({ message: error.message });
   }
 };
@@ -95,7 +95,7 @@ export const createAccount = async (
       message: "Account Created",
       data: user,
     });
-  } catch (error) {
+  } catch (error:any) {
     return res.status(404).json({ message: error.message });
   }
 };
@@ -110,10 +110,11 @@ export const signInAccount = async (
     const user = await authModel.findOne({ email });
     if(password)
     return res.status(201).json({
-      message: "welcome back ${user.userName},",data: user?._id
+      message: `welcome back ${user?.userName},`,
+      data: user?._id
     });
-    
-  } catch (error) {
+    return res.status(201).json({message:`welcome back divine$`})
+  } catch (error:any) {
     return res.status(404).json({ message: error.message });
   }
 };
